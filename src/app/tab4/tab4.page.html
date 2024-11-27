@@ -1,0 +1,73 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title slot="start">
+      Minha conta
+    </ion-title>
+    
+      <ion-icon size="large" name="menu-outline" id="open-modal" slot="end"></ion-icon>
+    
+
+      <ion-modal trigger="open-modal" [handle]="false" [initialBreakpoint]=".3">
+        <ng-template>
+          <ion-content>
+            <ion-list class="full-height">
+              <ion-item button>
+                <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+                <ion-label>Gerenciar perfil</ion-label>
+              </ion-item>
+              <ion-item button>
+                <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+                <ion-label>Ajuda</ion-label>
+              </ion-item>
+              <ion-item button (click)="logOut()">
+                <ion-icon slot="start" name="exit-outline"></ion-icon>
+                <ion-label>Sair</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="user-content">
+    <div class="user-info">
+    <img src="https://github.com/GabrielDainez.png" alt="">
+    <p>Gabriel Dainez</p>
+  </div>
+  </div>
+
+
+  <app-card-list [movies]="favoritesMovies" text="Filmes Favoritos"></app-card-list>
+  <app-card-list [movies]="favoritesTvs" text="Séries Favoritas"></app-card-list>
+  <app-card-list [movies]="tvList" text="Minha Lista"></app-card-list>
+  <app-card-list [movies]="movieList" text="Minha Lista"></app-card-list>
+  
+
+  <ion-modal id="open-edit" #modal trigger="open-edit" [initialBreakpoint]="0.2" [breakpoints]="[0, 0.2]">
+    <ng-template>
+      <ion-list lines="full">
+        <ion-item (click)="navigateTo('tab3')" (click)="modal.dismiss()">
+          <ion-icon name="pencil-outline" slot="start">
+          </ion-icon>
+          <ion-label>
+            <h3>Editar Perfil</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="navigateTo('tab3')" (click)="modal.dismiss()">
+          <ion-icon name="pencil-outline" slot="start">
+          </ion-icon>
+          <ion-label>
+            <h3>Editar Banner</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

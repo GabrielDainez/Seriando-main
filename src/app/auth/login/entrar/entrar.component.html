@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-card>
+    <ion-icon size="large" name="arrow-back-circle" color="light" (click)="navigateback('login')"></ion-icon>
+    <ion-card-header>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <ion-input formControlName="email" autocomplete="email" type="email" label="Digite seu E-mail" inputmode="email"
+          shape="round" label-placement="floating" fill="solid" color="dark"
+          placeholder="email@exemplo.com"></ion-input>
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-msg">
+          <small *ngIf="form.get('email')?.errors?.['required']">Email é obrigatório.</small>
+          <small *ngIf="form.get('email')?.errors?.['email']">Email inválido.</small>
+        </div>
+
+        <ion-input formControlName="password" type="password" label="Digite sua Senha" inputmode="text" shape="round"
+          label-placement="floating" fill="solid" color="dark" placeholder="Senha"></ion-input>
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-msg">
+          <small *ngIf="form.get('password')?.errors?.['required']">Senha é obrigatória.</small>
+          <small *ngIf="form.get('password')?.errors?.['minlength']">Senha deve ter pelo menos 6 caracteres.</small>
+        </div>
+        <ion-button color="primary" fill="clear" (click)="recoverPassword()" >Esqueci minha senha</ion-button>
+
+        <ion-button type="submit" expand="block" fill="solid" shape="round" [disabled]="form.invalid">
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+          Entrar Com Minha Conta
+        </ion-button>
+      </form>
+
+    </ion-card-header>
+  </ion-card>
+</ion-content>
+
+
+<!-- <ion-input type="email" label="Digite seu E-mail" label-placement="floating" fill="solid"
+    placeholder="email@exemplo.com"></ion-input>
+  <ion-input type="password" label="Digite sua Senha" label-placement="floating" fill="solid"
+    placeholder="Digite sua Senha"></ion-input>
+  <ion-button fill="solid" shape="round" routerDirection="back" (click)="goBack()">
+    <ion-icon name="log-in-outline"></ion-icon>
+  </ion-button> -->

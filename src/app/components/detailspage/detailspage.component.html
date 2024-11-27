@@ -1,0 +1,80 @@
+<ion-content>
+  <div *ngIf="itemDetails" class="details">
+    <div class="divheader">
+      <ion-icon class="voltar" size="large" name="arrow-back-circle" color="dark" routerDirection="back"
+        (click)="goBack()"></ion-icon>
+
+      <img *ngIf="itemDetails.backdrop_path" [src]="'https://image.tmdb.org/t/p/w780/' + itemDetails.backdrop_path"
+        alt="{{ itemDetails.title || itemDetails.name }}" class="backdrop-img" />
+
+    </div>
+
+    <div class="infos">
+
+      <h1 class="title">{{ itemDetails.title || itemDetails.name }}</h1>
+
+      <div class="item-metadata">
+        <p>{{itemDetails.runtime}} Min</p>
+        <p>{{ itemDetails.release_date || itemDetails.first_air_date }}</p>
+        <p>{{ itemDetails.vote_average }}</p>
+      </div>
+      <p class="overview">{{ itemDetails.overview }}</p>
+
+      <div class="genre">
+        <p *ngFor="let genre of itemDetails.genres ">{{genre.name}}</p>
+      </div>
+
+
+    </div>
+
+
+    <div class="actions">
+      <ion-buttons (click)="addToList(itemDetails.id, mediaType, itemDetails.title || itemDetails.name)">
+        <ion-icon [name]="isInList ? 'checkmark' : 'add'"></ion-icon>
+        <ion-label>{{ isInList ? 'Na lista' : 'Adicionar à lista' }}</ion-label>
+      </ion-buttons>
+      <ion-buttons (click)="isFavorite ? removeFromFavoriteMovies(itemDetails.id) : addFavorite(itemDetails.id, mediaType, itemDetails.title ||itemDetails.name )">
+        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+        <ion-label>{{ isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos' }}</ion-label>
+      </ion-buttons>
+    </div>
+
+
+    <!-- Elenco -->
+    <div class="slide" *ngIf="cast?.length">
+      <ion-h1 class="slide-title"><span>Elenco</span><ion-icon name="chevron-forward-outline"></ion-icon></ion-h1>
+      <swiper-container [slidesPerView]="2.8" [loop]="false">
+        <swiper-slide *ngFor="let actor of cast">
+          <div class="slide-img"
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + actor.profile_path + ')'}">
+          </div>
+          <div class="slide-text">
+            <p>{{ actor.name }}</p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <!-- Recomendações -->
+
+    <div class="slide" *ngIf="recommendations?.length">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title">
+        <span>Recomendações</span>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let recommendation of recommendations">
+          <div class="slide-img" (click)="navigateToDetailsPage(recommendation.id, recommendation.media_type)"
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + recommendation.poster_path + ')'}">
+            <div class="add-list">
+              <ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ recommendation.title || recommendation.name }}</p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</ion-content>

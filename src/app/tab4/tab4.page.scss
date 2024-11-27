@@ -1,0 +1,220 @@
+.userbanner {
+    background-image: url(../../assets/image/wakandaforever.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 20%;
+}
+
+.userconfig {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    width: 100vw;
+}
+
+.userprofile {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: baseline;
+    position: absolute;
+    gap: 10px;
+    width: 90vw;
+    height: 10vh;
+    z-index: 1;
+    top: 15vh;
+    left: 4vw;
+}
+
+.userprofile>img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.userprofile>p {
+    font-size: 1.8rem;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+/* .userprofile>ion-label {
+} */
+
+/* .userconfig>ion-icon {
+} */
+
+.favoritos {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+.favoritos-text {
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 50px;
+}
+
+.slide {
+    width: 100vw;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+.slide-title {
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 50px;
+    margin-top: 10px;
+    width: 55vw;
+    height: 3vh;
+}
+
+.slide-title>span {
+    border-bottom: 2px solid #ff0000;
+}
+
+ion-checkbox {
+    margin: 6px 6px 0 0;
+    --size: 26px;
+    --checkbox-background-checked: #ec1515;
+}
+
+ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: 1px solid #ff0000;
+}
+
+swiper-slide {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+swiper-container {
+    width: 100vw;
+    height: 100%;
+    /* Garante que o swiper ocupe toda a altura disponível */
+    align-items: center;
+    margin-top: 10px;
+}
+
+.slide-img {
+    background-image: url(../../assets/image/wakandaforever.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30vw;
+    height: 70%;
+    border-radius: 25px;
+    margin: 0 auto;
+    border: 1px solid #ff0000;
+}
+
+.slide-text {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+.slide-text p {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 8px;
+    width: 28vw;
+    height: 76.5px;
+    text-overflow: ellipsis;
+}
+
+
+.ios {
+    .devs {
+        margin: 0;
+    }
+
+    ion-modal {
+        --height: auto;
+    }
+
+
+    .devavatar {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+.md {
+    .devs {
+        margin: 0;
+    }
+
+    ion-modal {
+        --height: auto;
+    }
+
+    .devavatar {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+
+.full-height {
+    height: 100%;
+    border-radius: 15px;
+
+}
+
+ion-modal{
+    --border-radius: 25px;
+    --background: rgb(37, 37, 37);
+}
+
+ion-modal::part(backdrop) {
+    background-color: black;
+}
+  
+
+.user-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 4% 5px 4%;
+  }
+  
+  .user-info {
+    text-align: center; /* Centraliza conteúdo na horizontal */
+  }
+  
+  .user-info img {
+    width: 80px; /* Define a largura da imagem */
+    height: 80px; /* Define a altura da imagem */
+    border-radius: 20%; /* Torna a imagem circular */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorções */
+    /* Adiciona uma borda leve */
+  }
+  
+  .user-info p {
+    margin-top: 10px; /* Espaço entre a imagem e o nome */
+    font-size: 24px; /* Tamanho da fonte */
+    color: #ffffff; /* Cor do texto */
+    font-weight: 600; /* Texto mais destacado */
+  }
+  

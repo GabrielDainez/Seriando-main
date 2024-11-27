@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pesquisar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button expand="block" (click)="toggleSearchbar()">
+        <ion-icon name="search-outline" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<app-searchbar *ngIf="showSearchbar" (closeSearchbar)="toggleSearchbar()" class="overlay-results"></app-searchbar>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChange($event.detail.value)">
+    <ion-segment-button value="filmes">
+      <ion-icon name="videocam-outline"></ion-icon>
+      <ion-label>Filmes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="series">
+      <ion-icon name="tv-outline"></ion-icon>
+      <ion-label>Séries</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="selectedSegment === 'filmes'">
+    <div class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title"><span>Populares</span><ion-icon
+          name="chevron-forward-outline"></ion-icon></ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let movie of populares">
+          <div class="slide-img" (click)="navigateToDetailsPage(movie.id, 'movie')" 
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + movie.poster_path + ')'}">
+            <div class="add-list"><ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ movie.title }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title"><span>Em Alta</span><ion-icon
+          name="chevron-forward-outline"></ion-icon></ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let movie of trending">
+          <div class="slide-img" (click)="navigateToDetailsPage(movie.id, 'movie')"
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + movie.poster_path + ')'}">
+            <div class="add-list"><ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ movie.title }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div *ngFor="let genre of randomGenres" class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title"><span>{{ genre.genre }}</span><ion-icon
+          name="chevron-forward-outline"></ion-icon></ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let movie of genre.movies">
+          <div class="slide-img" (click)="navigateToDetailsPage(movie.id, 'movie')"
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + movie.poster_path + ')'}">
+            <div class="add-list"><ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ movie.title }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+
+  <div *ngIf="selectedSegment === 'series'">
+    <div class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title">
+        <span>Populares</span><ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let series of seriesPopulares">
+          <div class="slide-img" 
+            (click)="navigateToDetailsPage(series.id, 'tv')" 
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + series.poster_path + ')'}">
+            <div class="add-list">
+              <ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ series.name }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title">
+        <span>Em Alta</span><ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let series of seriesPopulares">
+          <div class="slide-img" 
+            (click)="navigateToDetailsPage(series.id, 'tv')" 
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + series.poster_path + ')'}">
+            <div class="add-list">
+              <ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ series.name }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <div *ngFor="let genre of randomSeriesGenres" class="slide">
+      <ion-h1 (click)="navigateTo('tab2')" class="slide-title">
+        <span>{{ genre.genre }}</span>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-h1>
+      <swiper-container [slidesPerView]="2.5" [loop]="false">
+        <swiper-slide *ngFor="let serie of genre.series">
+          <div class="slide-img" 
+            (click)="navigateToDetailsPage(serie.id, 'tv')" 
+            [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w780/' + serie.poster_path + ')'}">
+            <div class="add-list">
+              <ion-checkbox justify="end"><ion-icon name="add-outline"></ion-icon></ion-checkbox>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p>{{ serie.name }}</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="last-slide">
+          <div class="slide-img" [ngStyle]="{'background-color': '#000000'}">
+            <div class="ver-mais">
+              <ion-icon size="large" name="library-outline"></ion-icon>
+              <p>Ver Mais</p>
+            </div>
+          </div>
+          <div class="slide-text">
+            <p></p>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    
+
+  </div>
+</ion-content>
